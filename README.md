@@ -6,7 +6,7 @@ Un lugar de misterio y soledad, donde la historia y el conocimiento permanecen p
 Esperando ser descubiertos, por aquellos aventureros que busquen la verdad.
 ```
 ## Repositorio del Servidor: MudRock
-### play.mudrock.es
+https://api.loohpjames.com/serverbanner.png?ip=play.mudrock.es
 
 * Proximamente...
 * Añadire mas Información...
