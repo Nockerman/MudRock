@@ -1,0 +1,117 @@
+##################################################################
+#                                                                #
+#                         MI PRIMER MOB                          #
+#                                                                #
+##################################################################
+#                                                                #
+#   Este es uno de mis primeros mobs que cree en MythicMobs.     #
+#   Echo para un evento de Halloween rondaria el año 2017...     #
+#   Por casualidades del destino Piruja nunca vio la luz.        #
+#                                                                #
+##################################################################
+#                                                                #
+#       creditos a: LocoDeMinecraft                              #
+#   Por almacenarla durante todos estos años. Sin ti este        #
+#   pedacito de historia hace tiempo habría dejado de existir.   #
+#                                                                #
+##################################################################
+
+piruja:
+  Type: WITCH
+  Health: 230
+  Display: '&5Piruja'
+  Damage: 10
+  Modules:
+    ThreatTable: true
+  AITargetSelectors:
+   - 0 clear
+   - 1 attacker
+   - 2 hurtbytarget
+   - 3 players
+  AIGoalSelectors:
+   - 0 clear   
+   - 1 meleeattack   
+  Skills:
+   - sound{s=entity.blaze.hurt} @Self ~onSpawn 1
+   - message{m="<mob.name> &fHa aparecido en la &bCasa Embrujada.";cooldown=1} @PlayersOnServer ~onSpawn 1   
+   - effect:particles{p=witchMagic;amount=190;speed=0.03;hR=3;vR=3} @self ~onTimer:20
+   - message{cooldown=20;m="<mob.name><&co> Quien te ha dado permiso para entar en mi casa"} @PlayersInRadius{r=40} ~onSpawn 1
+   - message{cooldown=30;m="<mob.name><&co> No eres nadie, acabare contigo!"} @PlayersInRadius{r=15} ~onCombat >0 0.2   
+   - message{cooldown=45;m="<mob.name><&co> Al final tendre que llamar a mis secuaces para que os echen de aqui."} @PlayersInRadius{r=15} ~onCombat >0 0.3
+   - effect:particles{p=witchMagic;amount=190;speed=0.03;hR=3;vR=3} @self ~onTimer:20
+   - shootskull{y=1;v=4} @target ~onTimer:100
+   - runaitargetselector{target=players} @PlayersInRadius{r=3}
+   - sound{s=entity.blaze.death} @self ~onDeath 1
+   - message{m="<mob.name><&co> Arrgh!! Feliz Halloween!!";cooldown=1} @PlayersInRadius{r=20} ~onDeath 1
+   - summon{type=minisecuaz;amount=4;radius=3} @Self ~onDeath 1
+   - summon{type=secuaz;amount=1;radius=1} @Self ~onDeath 1
+   - message{m="<trigger.name> Ha matado a <mob.name>&r";cooldown=1} @PlayersInRadius{r=40} ~onDeath 1
+   - command{c="fill 1227 86 378 1227 86 378 minecraft:stone_pressure_plate"} ~onDeath 1
+   - message{m="<mob.name><&co> Ahahahahah! Enserio! Casi me da hasta pena."} @PlayersInRadius{r=20} ~onPlayerKill >0 1
+  Options:
+     AlwaysShowName: true
+     MovementSpeed: 0.5
+     MaxCombatDistance: 27
+     PreventOtherDrops: true
+     PreventItemPickup: true
+
+minisecuaz:
+  Type: BABY_ZOMBIE
+  Display: '&aSecuaz'
+  Health: 20
+  Damage: 5
+  Drops:
+   - 
+  AiTargetSelectors:
+  - 0 clear
+  - 1 players
+  AIGoalSelectors:
+   - 0 clear   
+   - 1 meleeattack
+  Skills:
+  - effect:explosion @self ~onSpawn 1
+  - message{m="<mob.name><&co> Piru, piru, pirujaaa.";cooldown=60} @PlayersInRadius{r=15} ~onCombat >0 0.2
+  - message{m="<mob.name><&co> Muahahah...";cooldown=1} @PlayersInRadius{r=20} ~onDeath 1
+  Options:    
+    Age: -1
+    AgeLock: True
+    AlwaysShowName: true
+    MaxCombatDistance: 15
+    KnockbackResistance: 0.7
+    PreventOtherDrops: true
+    PreventItemPickup: true
+    Movementspeed: 0.3
+
+secuaz: 
+  Type: ZOMBIE
+  Display: '&2Secuaz'
+  Health: 60
+  Damage: 15
+  Drops:
+   - 
+  AiTargetSelectors:
+  - 0 clear
+  - 1 players
+  AIGoalSelectors:
+   - 0 clear   
+   - 1 meleeattack
+  Skills:
+  - effect:explosion @self ~onSpawn 1
+  - message{m="<mob.name><&co> Habeis osado matar a Piruja? Atrapadles!";cooldown=1} @PlayersInRadius{r=15} ~onSpawn >0 0.2
+  - message{m="<mob.name><&co> Urgh! ";cooldown=1} @PlayersInRadius{r=20} ~onDeath 1
+  Options:    
+    Age: -1
+    AgeLock: True
+    AlwaysShowName: true
+    MaxCombatDistance: 15
+    KnockbackResistance: 0.7
+    PreventOtherDrops: true
+    PreventItemPickup: true
+    Movementspeed: 0.3
+
+##################################################################
+#                                                                #
+#             No voy a comentar ni cambiar este mob.             #
+#         Hare una nueva versión de este mob mas adelante.       #
+#                                                                #
+##################################################################
